@@ -5,15 +5,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fbfbfb"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HALLO \n SELAMAT DATANG"
+        android:textAlignment="center"
+        android:textColor="#876445"
+        android:textSize="36sp"
+        android:fontFamily="@font/rasa_semibold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:src="@drawable/museum"
+        app:layout_constraintBottom_toTopOf="@id/start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/start"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="get started"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button"
+        android:elevation="5dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:text="Yuk Mulai!"
+        android:fontFamily="@font/rasa"
+        android:textColor="#fbfbfb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Button>
-
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
