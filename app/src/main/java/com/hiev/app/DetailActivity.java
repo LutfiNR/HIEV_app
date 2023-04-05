@@ -14,10 +14,9 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        // Set up the UI elements for the activity
-//        TextView textView = findViewById(R.id.judul);
-//        Button btnAudio = findViewById(R.id.isi);
-//
+        TextView judul = findViewById(R.id.judul);
+        TextView isi = findViewById(R.id.isi);
+
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
 
