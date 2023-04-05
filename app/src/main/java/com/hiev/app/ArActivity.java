@@ -76,7 +76,7 @@ public class ArActivity extends AppCompatActivity {
                     arCam.getArSceneView().getScene().addChild(anchorNode);
                     addModel(R.raw.bapak,anchorNode,0f,0f,0f,0.005f,"adolf");
                     addModel(R.raw.kebon,anchorNode,0f,0f,0f,0.005f,"pertanian");
-                    addModel(R.raw.orang3,anchorNode,0f,0f,0f,0.005f,"tokoh");
+                    addModel(R.raw.tokoh,anchorNode,0f,0f,0f,0.005f,"tokoh");
                     addModel(R.raw.pemukiman,anchorNode,0f,0f,0f,0.005f,"persinggahan");
                     addModel(R.raw.pertanian,anchorNode,0f,0f,0f,0.005f,"pertanian");
                     addModel(R.raw.sekolah,anchorNode,0f,0f,0f,0.005f,"sekolah");
