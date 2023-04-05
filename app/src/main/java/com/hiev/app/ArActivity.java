@@ -14,14 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.Node;
-import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 
 import java.util.Objects;
 
-public class arActivity extends AppCompatActivity {
+public class ArActivity extends AppCompatActivity {
     private ArFragment arCam; //object of ArFragment Class
     private int clickNo = 0; //helps to render the 3d model only once when we tap the screen
     public static boolean checkSystemSupport(Activity activity) {
@@ -69,7 +68,7 @@ public class arActivity extends AppCompatActivity {
                             .setSource(this, R.raw.anchor)
                             .setIsFilamentGltf(true)
                             .build()
-                            .thenAccept(modelRenderable -> addMaps(anchorNode, modelRenderable))
+                            .thenAccept(modelRenderable -> createAnchor(anchorNode, modelRenderable))
                             .exceptionally(throwable -> {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                                 builder.setMessage("Somthing is not right" + throwable.getMessage()).show();
@@ -78,10 +77,14 @@ public class arActivity extends AppCompatActivity {
 
 
                     arCam.getArSceneView().getScene().addChild(anchorNode);
-                    addJudul(R.raw.tkebon,anchorNode,0.048f,1.3f,0.19f);
-                    addGambar(R.raw.kebon,anchorNode,0.048f,1.5f,0.19f);
+                    addModel(R.raw.bapak,anchorNode,0f,0f,0f,0.005f,"adolf");
+                    addModel(R.raw.kebon,anchorNode,0f,0f,0f,0.005f,"pertanian");
+                    addModel(R.raw.orang3,anchorNode,0f,0f,0f,0.005f,"tokoh");
+                    addModel(R.raw.pemukiman,anchorNode,0f,0f,0f,0.005f,"persinggahan");
+                    addModel(R.raw.pertanian,anchorNode,0f,0f,0f,0.005f,"pertanian");
+                    addModel(R.raw.sekolah,anchorNode,0f,0f,0f,0.005f,"sekolah");
+                    Toast.makeText(this, "Tekan Gambar Untuk Informasi Detil", Toast.LENGTH_LONG).show();
                 }
-
             });
 
         } else {
@@ -91,59 +94,29 @@ public class arActivity extends AppCompatActivity {
         }
     }
 
-    private void addMaps(AnchorNode anchorNode, ModelRenderable modelRenderable) {
+    private void createAnchor(AnchorNode anchorNode, ModelRenderable modelRenderable){
         Node modelMaps = new Node();
         modelMaps.setParent(anchorNode);
         modelMaps.setRenderable(modelRenderable);
         modelMaps.setLocalScale(new Vector3(0.001f, 0.001f, 0.001f));
     }
 
-    private void addBtnInfo(Integer modelSource, AnchorNode anchorNode, float xPos, float yPos, float zPos) {
+    private void addModel(Integer modelSource, AnchorNode anchorNode, float xPos, float yPos, float zPos, float scale,String id){
         ModelRenderable.builder()
                 .setSource(this, modelSource)
                 .setIsFilamentGltf(true)
                 .build()
                 .thenAccept(modelRenderable -> {
-                    Node modelBtnInfo = new Node();
-                    modelBtnInfo.setLocalScale(new Vector3(0.009f, 0.009f, 0.009f));
-                    modelBtnInfo.setLocalPosition(new Vector3(xPos,yPos,zPos));
-                    modelBtnInfo.setLocalRotation(Quaternion.multiply(Quaternion.axisAngle(Vector3.right(), 90f),Quaternion.axisAngle(Vector3.up(), 90f)));
-                    modelBtnInfo.setRenderable(modelRenderable);
-                    anchorNode.addChild(modelBtnInfo);
-                    modelBtnInfo.setOnTapListener((positon,event)->{
-                        //move to other activity
-                        Intent intent = new Intent(this, detailActivity.class);
+                    Node model = new Node();
+                    model.setLocalScale(new Vector3(scale, scale, scale));
+                    model.setLocalPosition(new Vector3(xPos, yPos, zPos));
+                    model.setRenderable(modelRenderable);
+                    anchorNode.addChild(model);
+                    model.setOnTapListener((position, event) -> {
+                        Intent intent = new Intent(this, DetailActivity.class);
+                        intent.putExtra("passid", id);
                         startActivity(intent);
-                        clickNo = 0;
                     });
-                });
-    }
-    private void addJudul(Integer modelSource, AnchorNode anchorNode, float xPos, float yPos, float zPos){
-        ModelRenderable.builder()
-                .setSource(this, modelSource)
-                .setIsFilamentGltf(true)
-                .build()
-                .thenAccept(modelRenderable -> {
-                    Node modelJudul = new Node();
-                    modelJudul.setLocalScale(new Vector3(0.01f, 0.01f, 0.01f));
-                    modelJudul.setLocalPosition(new Vector3(xPos,yPos,zPos));
-                    modelJudul.setLocalRotation(Quaternion.multiply(Quaternion.axisAngle(Vector3.right(), 180f),Quaternion.axisAngle(Vector3.up(), 90f)));
-                    modelJudul.setRenderable(modelRenderable);
-                    anchorNode.addChild(modelJudul);
-                });
-    }
-    private void addGambar(Integer modelSource, AnchorNode anchorNode, float xPos, float yPos, float zPos){
-        ModelRenderable.builder()
-                .setSource(this, modelSource)
-                .setIsFilamentGltf(true)
-                .build()
-                .thenAccept(modelRenderable -> {
-                    Node modelJudul = new Node();
-                    modelJudul.setLocalScale(new Vector3(0.001f, 0.001f, 0.001f));
-                    modelJudul.setLocalPosition(new Vector3(xPos,yPos,zPos));
-                    modelJudul.setLocalRotation(Quaternion.multiply(Quaternion.axisAngle(Vector3.right(), 90f),Quaternion.axisAngle(Vector3.up(), 90f)));
-                    modelJudul.setRenderable(modelRenderable);
-                    anchorNode.addChild(modelJudul);
                 });
     }
 

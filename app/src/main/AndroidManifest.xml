@@ -13,7 +13,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logohiev"
+        android:icon="@drawable/logohiev"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -29,9 +29,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hiev.app.detailActivity" />
+            android:name="com.hiev.app.DetailActivity" />
         <activity
-            android:name="com.hiev.app.arActivity"
+            android:name="com.hiev.app.ArActivity"
             />
     </application>
 

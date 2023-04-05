@@ -9,10 +9,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, arActivity.class);
+                Intent intent = new Intent(MainActivity.this, ArActivity.class);
                 startActivity(intent);
             }
         });
