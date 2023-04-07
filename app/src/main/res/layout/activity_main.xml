@@ -5,50 +5,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fbfbfb"
+    android:background="#5D3A3A"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HALLO \n SELAMAT DATANG"
-        android:textAlignment="center"
-        android:textColor="#876445"
-        android:textSize="36sp"
-        android:fontFamily="@font/rasa_semibold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/leftblob"
+        android:layout_width="150dp"
+        android:layout_height="196dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/leftblob"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_marginTop="50dp"
-        android:layout_width="300dp"
+        android:id="@+id/rightblob"
+        android:layout_width="70dp"
         android:layout_height="250dp"
-        android:src="@drawable/museum"
-        app:layout_constraintBottom_toTopOf="@id/start"
+        android:scaleType="fitXY"
+        android:src="@drawable/rightblob"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/welcome"
+        android:layout_marginTop="50dp"
+        android:layout_width="250dp"
+        android:layout_height="335dp"
+        android:src="@drawable/welcome"
+        app:layout_constraintBottom_toTopOf="@id/selamat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/selamat"
+        android:layout_marginTop="20dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:letterSpacing="0.05"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Halo\nSelamat Datang"
+        android:textColor="#B5E0BA"
+        app:layout_constraintBottom_toTopOf="@id/desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:letterSpacing="0.1"
+        android:text="History of\nIndo-Europeesch-Verboon\nMini AR Application"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selamat" />
+
 
     <Button
         android:id="@+id/start"
-        android:layout_width="200dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/button"
-        android:elevation="5dp"
-        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Mulai!"
         android:textAlignment="center"
-        android:text="Yuk Mulai!"
-        android:fontFamily="@font/rasa"
-        android:textColor="#fbfbfb"
+        android:textColor="#373737"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

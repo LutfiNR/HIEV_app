@@ -41,6 +41,7 @@ public class ArActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ar);
         if (checkSystemSupport(this)) {
             arCam = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arCameraArea);
+            assert arCam != null;
             arCam.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
                 clickNo++;
                 if (clickNo == 1) {
@@ -58,17 +59,14 @@ public class ArActivity extends AppCompatActivity {
                                 return null;
                             });
                     arCam.getArSceneView().getScene().addChild(anchorNode);
-                    addModel(R.raw.bapak,anchorNode,0f,0f,0f,0.005f,"adolf");
-                    addModel(R.raw.kebon,anchorNode,0f,0f,0f,0.005f,"pertanian");
-                    addModel(R.raw.tokoh,anchorNode,0f,0f,0f,0.005f,"tokoh");
-                    addModel(R.raw.pemukiman,anchorNode,0f,0f,0f,0.005f,"persinggahan");
-                    addModel(R.raw.pertanian,anchorNode,0f,0f,0f,0.005f,"pertanian");
-                    addModel(R.raw.sekolah,anchorNode,0f,0f,0f,0.005f,"sekolah");
-                    Toast.makeText(this, "Tekan Gambar Untuk Informasi Detil", Toast.LENGTH_LONG).show();
+                    addModel(R.raw.bapak,anchorNode,0.005f,"adolf");
+                    addModel(R.raw.kebon,anchorNode,0.005f,"pertanian");
+                    addModel(R.raw.tokoh,anchorNode,0.005f,"tokoh");
+                    addModel(R.raw.pemukiman,anchorNode,0.005f,"persinggahan");
+                    addModel(R.raw.pertanian,anchorNode,0.005f,"pertanian");
+                    addModel(R.raw.sekolah,anchorNode,0.005f,"sekolah");
                 }
             });
-        } else {
-            return;
         }
     }
     private void createAnchor(AnchorNode anchorNode, ModelRenderable modelRenderable){
@@ -77,7 +75,7 @@ public class ArActivity extends AppCompatActivity {
         modelMaps.setRenderable(modelRenderable);
         modelMaps.setLocalScale(new Vector3(0.001f, 0.001f, 0.001f));
     }
-    private void addModel(Integer modelSource, AnchorNode anchorNode, float xPos, float yPos, float zPos, float scale,String id){
+    private void addModel(Integer modelSource, AnchorNode anchorNode,float scale,String id){
         ModelRenderable.builder()
                 .setSource(this, modelSource)
                 .setIsFilamentGltf(true)
@@ -85,7 +83,6 @@ public class ArActivity extends AppCompatActivity {
                 .thenAccept(modelRenderable -> {
                     Node model = new Node();
                     model.setLocalScale(new Vector3(scale, scale, scale));
-                    model.setLocalPosition(new Vector3(xPos, yPos, zPos));
                     model.setRenderable(modelRenderable);
                     anchorNode.addChild(model);
                     model.setOnTapListener((position, event) -> {
